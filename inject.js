@@ -16,7 +16,7 @@
     d.head.appendChild(s);
   }
 
-  function _open() {
+  function _open(secao) {
     if (overlay) _close();
     _injectStyles();
 
@@ -27,7 +27,7 @@
       'animation:_gcIn 0.3s ease both;';
 
     var iframe = d.createElement('iframe');
-    iframe.src = QUEM_SOMOS_URL + '?v=' + Date.now();
+    iframe.src = QUEM_SOMOS_URL + '?secao=' + secao + '&v=' + Date.now();
     iframe.style.cssText = 'width:100%;height:100%;border:none;display:block;background:#434040;';
     iframe.setAttribute('allow', 'fullscreen');
 
@@ -55,10 +55,16 @@
   }
 
   // ── API pública ──────────────────────────────────────────────
-  // AbrirQuemSomos(1) → abre a tela Quem Somos
+  // AbrirQuemSomos(1) → abre a parte Quem Somos (construtora)
   // AbrirQuemSomos(0) → fecha
   w.AbrirQuemSomos = function (show) {
-    if (show === 1) _open(); else _close();
+    if (show === 1) _open('quem-somos'); else _close();
+  };
+
+  // AbrirArquitetos(1) → abre a parte Arquitetos
+  // AbrirArquitetos(0) → fecha
+  w.AbrirArquitetos = function (show) {
+    if (show === 1) _open('arquitetos'); else _close();
   };
 
 }(window, document));

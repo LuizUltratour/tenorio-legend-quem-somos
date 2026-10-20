@@ -49,8 +49,7 @@ const CONTEUDO = {
 };
 ```
 
-- Topo da página: só a construtora, centralizada.
-- Abaixo: uma linha por pessoa — texto à esquerda, foto à direita, centralizados na vertical.
+- A mesma página tem duas partes, escolhidas por `?secao=`: `quem-somos` (construtora, centralizada) e `arquitetos` (uma linha por pessoa — texto à esquerda, foto à direita, centralizados na vertical).
 - Para adicionar uma pessoa: coloque a foto em `assets/` e inclua um item em `pessoas`.
 
 ---
@@ -101,11 +100,13 @@ aws s3 cp inject.js "s3://skylineip/Tour Virtual/tenorio/quem-somos/inject.js" \
 ### Passo 2 — Acionar nos hotspots/botões
 
 ```js
-// Abre a tela Quem Somos
+// Botão "Quem Somos" — abre / fecha a parte da construtora
 AbrirQuemSomos(1);
-
-// Fecha a tela Quem Somos
 AbrirQuemSomos(0);
+
+// Botão "Arquitetos" — abre / fecha a parte dos arquitetos
+AbrirArquitetos(1);
+AbrirArquitetos(0);
 ```
 
 O botão de fechar da própria página envia `postMessage({ action: 'closeGallery' })` ao 3DVista, que o `inject.js` trata fechando o overlay.

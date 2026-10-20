@@ -95,6 +95,8 @@
       opacity: 0.7;
     }
 
+    .oculto { display: none !important; }
+    #arquitetos { padding-top: 90px; }
     .divisor {
       width: 64px; height: 1px;
       background: var(--border);
@@ -193,9 +195,7 @@
     <div id="c-textos"></div>
   </section>
 
-  <div class="divisor"></div>
-
-  <main class="wrap">
+  <main class="wrap" id="arquitetos">
     <h2 class="titulo-pessoas" id="p-titulo"></h2>
     <div id="pessoas"></div>
   </main>
@@ -223,7 +223,7 @@ const CONTEUDO = {
       { valor: '+2.500', rotulo: 'clientes satisfeitos' },
     ],
   },
-  tituloPessoas: 'Quem fez parte',
+  tituloPessoas: 'Arquitetos',
   // texto: lista de parágrafos (os que começam com “ aparecem como citação)
   // assinatura: linhas opcionais abaixo do texto
   pessoas: [
@@ -260,6 +260,11 @@ const CONTEUDO = {
 // RENDER
 // ================================================================
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+// ?secao=quem-somos | arquitetos (cada botão do tour abre uma parte)
+const SECAO = new URLSearchParams(location.search).get('secao') === 'arquitetos' ? 'arquitetos' : 'quem-somos';
+document.getElementById(SECAO === 'arquitetos' ? 'construtora' : 'arquitetos').classList.add('oculto');
+document.title = SECAO === 'arquitetos' ? 'Arquitetos — Tenório Legend' : 'Quem Somos — Tenório Legend';
 
 document.getElementById('c-titulo').textContent = CONTEUDO.construtora.titulo;
 document.getElementById('c-textos').innerHTML =
