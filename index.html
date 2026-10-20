@@ -74,6 +74,27 @@
     }
     #construtora p + p { margin-top: 16px; }
 
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px 20px;
+      margin-top: 48px;
+    }
+    .stat-num {
+      font-family: var(--font-serif);
+      font-size: 34px;
+      font-weight: 600;
+      line-height: 1.1;
+    }
+    .stat-lbl {
+      margin-top: 6px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
     .divisor {
       width: 64px; height: 1px;
       background: var(--border);
@@ -116,6 +137,23 @@
       line-height: 1.85;
       color: var(--text-soft);
     }
+    .pessoa-bio + .pessoa-bio { margin-top: 14px; }
+    .pessoa-bio.citacao {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--dark);
+    }
+    .pessoa-assinatura {
+      margin-top: 22px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      line-height: 1.8;
+      letter-spacing: 0.04em;
+      opacity: 0.75;
+    }
     .pessoa-foto {
       justify-self: center;
       width: 100%;
@@ -138,6 +176,7 @@
       #btn-close { top: 10px; right: 14px; }
       #construtora { padding: 80px 22px 50px; }
       #construtora h1 { font-size: 38px; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
       .pessoa { grid-template-columns: 1fr; gap: 24px; margin-bottom: 56px; }
       .pessoa-foto { order: -1; max-width: 320px; }
       .pessoa-nome { font-size: 30px; }
@@ -171,15 +210,49 @@ const CONTEUDO = {
   construtora: {
     titulo: 'Quem Somos',
     textos: [
-      'TEXTO DA CONSTRUTORA — parágrafo 1.',
-      'TEXTO DA CONSTRUTORA — parágrafo 2.',
+      'Há momentos na vida em que o comum deixa de ser suficiente e surge o desejo profundo pelo autêntico, pelo inspirador e pelo impecável.',
+      'É exatamente no contexto desse desejo que a Tenório Incorporações firma o seu propósito: construir com ética, inovação e responsabilidade socioambiental empreendimentos que vão muito além da simples moradia, transformando a paisagem urbana e criando verdadeiros estilos de vida.',
+      'Uma paixão pela excelência traduzida em um legado construtivo sólido e guiada pela missão de integrar o extraordinário ao cotidiano das pessoas, refletindo personalidade e inspiração.',
+    ],
+    numeros: [
+      { valor: '+45', rotulo: 'anos de atuação' },
+      { valor: '+700 mil m²', rotulo: 'de área construída' },
+      { valor: '+45', rotulo: 'empreendimentos entregues' },
+      { valor: '+2.500', rotulo: 'unidades residenciais e comerciais' },
+      { valor: '+R$ 500 mi', rotulo: 'em land bank' },
+      { valor: '+2.500', rotulo: 'clientes satisfeitos' },
     ],
   },
   tituloPessoas: 'Quem fez parte',
+  // texto: lista de parágrafos (os que começam com “ aparecem como citação)
+  // assinatura: linhas opcionais abaixo do texto
   pessoas: [
-    { nome: 'Brenda Jeanne', cargo: 'CARGO', foto: 'assets/Brenda Jeanne.jpeg', texto: 'Texto sobre Brenda Jeanne.' },
-    { nome: 'Filipo Madeira', cargo: 'CARGO', foto: 'assets/Filipo Madeira.jpeg', texto: 'Texto sobre Filipo Madeira.' },
-    { nome: 'Luciana Dias', cargo: 'CARGO', foto: 'assets/Luciana Dias.jpeg', texto: 'Texto sobre Luciana Dias.' },
+    { nome: 'Brenda Jeanne', cargo: '', foto: 'assets/Brenda Jeanne.jpeg', texto: [
+      'Gosto de criar jardins que sejam sentidos, apreciados e admirados.',
+      'Lugares onde seja possível colher frutos, se encantar com as flores, ouvir os pássaros ou simplesmente sentar e contemplar a natureza.',
+      'Acredito que um jardim de verdade não é apenas para ser visto. É para fazer parte da vida e nos fazer sentir parte dele.',
+    ] },
+    {
+      nome: 'Scherb Arquitetura', cargo: 'Renata e Yara Scherb — Arquitetas', foto: 'assets/SCHERB ARQUITETURA.png',
+      texto: [
+        '“Um projeto que nasce do equilíbrio entre sofisticação, conforto e uma nova experiência de morar.”',
+        'Com quase 40 anos de arquitetura e mais de 100 obras executadas, assino este empreendimento unindo forma e função, segurança patrimonial, qualidade e autonomia na vida longeva.',
+        'Em mais de 20 anos de parceria, projetar para a Tenório Incorporações é sempre pensar em moradia diferenciada e atemporal, onde cada planta foi desenhada para oferecer amplitude, flexibilidade de customização, trazendo a paisagem para dentro de casa.',
+        'Mais que um apartamento de 4 quartos, o LEGEND é uma moradia para quem vive intensamente todas as fases da vida: suítes generosas, living ampliado e integrado, varanda gourmet, cozinha funcional e área de serviço inteligente. Acabamentos de alto padrão e esquadrias especiais que garantem ventilação e iluminação natural, ampliando o contato visual com o exterior. Um projeto autoral onde cada metro quadrado foi feito para ser vivido, não apenas ocupado.',
+        '“Arquitetura de alto padrão para famílias que crescem e progridem, experimentando a convivência diária num espaço que contribui para o viver bem.”',
+      ],
+      assinatura: [
+        '40 anos | 06 prêmios | +100 obras no mercado imobiliário',
+        'Recife e São Paulo | @scherb.arq.br',
+      ],
+    },
+    { nome: 'Filipo Madeira', cargo: '', foto: 'assets/Filipo Madeira.jpeg', texto: ['TEXTO DO FILIPO MADEIRA.'] },
+    {
+      nome: 'Luciana Dias', cargo: 'Arquiteta e Urbanista', foto: 'assets/Luciana Dias.jpeg',
+      texto: [
+        'Arquiteta e urbanista, Luciana Dias desenvolve projetos que unem estética, funcionalidade e identidade. Com um olhar atento aos detalhes, aos materiais e à integração dos espaços, busca criar ambientes atemporais, sofisticados e acolhedores, traduzindo a essência de cada cliente em projetos que aliam personalidade, conforto e elegância.',
+      ],
+    },
   ],
 };
 
@@ -190,14 +263,17 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':
 
 document.getElementById('c-titulo').textContent = CONTEUDO.construtora.titulo;
 document.getElementById('c-textos').innerHTML =
-  CONTEUDO.construtora.textos.map(t => `<p>${esc(t)}</p>`).join('');
+  CONTEUDO.construtora.textos.map(t => `<p>${esc(t)}</p>`).join('') +
+  `<div class="stats">${CONTEUDO.construtora.numeros.map(n =>
+    `<div><div class="stat-num">${esc(n.valor)}</div><div class="stat-lbl">${esc(n.rotulo)}</div></div>`).join('')}</div>`;
 document.getElementById('p-titulo').textContent = CONTEUDO.tituloPessoas;
 document.getElementById('pessoas').innerHTML = CONTEUDO.pessoas.map(p => `
   <article class="pessoa">
     <div class="pessoa-texto">
       <h3 class="pessoa-nome">${esc(p.nome)}</h3>
-      <div class="pessoa-cargo">${esc(p.cargo)}</div>
-      <p class="pessoa-bio">${esc(p.texto)}</p>
+      ${p.cargo ? `<div class="pessoa-cargo">${esc(p.cargo)}</div>` : ''}
+      ${p.texto.map(t => `<p class="pessoa-bio${t.startsWith('“') ? ' citacao' : ''}">${esc(t)}</p>`).join('')}
+      ${p.assinatura ? `<div class="pessoa-assinatura">${p.assinatura.map(esc).join('<br>')}</div>` : ''}
     </div>
     <div class="pessoa-foto"><img src="${esc(p.foto)}" alt="${esc(p.nome)}" loading="lazy" decoding="async"></div>
   </article>`).join('');
