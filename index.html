@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quem Somos — Tenório Legend</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #325825;
+      --dark: #F2EBDD;
+      --text-soft: rgba(242,235,221,0.78);
+      --border: rgba(242,235,221,0.22);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Inter', system-ui, sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg) url(assets/bg.png) center/cover no-repeat fixed;
+      color: var(--dark);
+      font-family: var(--font-sans);
+    }
+
+    /* ── CLOSE ── */
+    #btn-close {
+      position: fixed;
+      top: 16px; right: 24px;
+      z-index: 10;
+      width: 45px; height: 45px;
+      padding: 0;
+      border: none;
+      cursor: pointer;
+      background: url(assets/close.png) center/100% 100% no-repeat;
+      transition: filter 0.2s ease, transform 0.2s ease;
+    }
+    @media (hover: hover) { #btn-close:hover { filter: brightness(1.25); transform: scale(1.06); } }
+    #btn-close:active { filter: brightness(1.25); transform: scale(0.96); }
+
+    /* ── SCROLL ── */
+    #qs-scroll {
+      height: 100vh;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+    #qs-scroll::-webkit-scrollbar { width: 5px; }
+    #qs-scroll::-webkit-scrollbar-track { background: transparent; }
+    #qs-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+
+    /* ── QUEM SOMOS (construtora) ── */
+    #construtora {
+      text-align: center;
+      padding: 90px 0 70px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    #construtora h1, .titulo-pessoas {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+    }
+    #construtora h1 { font-size: 52px; margin-bottom: 26px; }
+    #construtora p {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--text-soft);
+    }
+    #construtora p + p { margin-top: 16px; }
+
+    .divisor {
+      width: 64px; height: 1px;
+      background: var(--border);
+      margin: 0 auto 70px;
+    }
+
+    .titulo-pessoas {
+      text-align: center;
+      font-size: 34px;
+      margin-bottom: 56px;
+    }
+
+    /* ── PESSOAS: texto à esquerda, foto à direita, centralizados ── */
+    .pessoa {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      margin-bottom: 80px;
+    }
+    .pessoa-texto { text-align: left; }
+    .pessoa-nome {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 600;
+      line-height: 1.15;
+    }
+    .pessoa-cargo {
+      margin-top: 8px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+    .pessoa-bio {
+      margin-top: 22px;
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--text-soft);
+    }
+    .pessoa-foto {
+      justify-self: center;
+      width: 100%;
+      max-width: 400px;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+    .pessoa-foto img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    footer { height: 40px; }
+
+    @media (max-width: 800px) {
+      .wrap { padding: 0 22px; }
+      #btn-close { top: 10px; right: 14px; }
+      #construtora { padding: 80px 22px 50px; }
+      #construtora h1 { font-size: 38px; }
+      .pessoa { grid-template-columns: 1fr; gap: 24px; margin-bottom: 56px; }
+      .pessoa-foto { order: -1; max-width: 320px; }
+      .pessoa-nome { font-size: 30px; }
+    }
+  </style>
+</head>
+<body>
+
+<button id="btn-close" title="Fechar" aria-label="Fechar"></button>
+
+<div id="qs-scroll">
+  <section id="construtora">
+    <h1 id="c-titulo"></h1>
+    <div id="c-textos"></div>
+  </section>
+
+  <div class="divisor"></div>
+
+  <main class="wrap">
+    <h2 class="titulo-pessoas" id="p-titulo"></h2>
+    <div id="pessoas"></div>
+  </main>
+  <footer></footer>
+</div>
+
+<script>
+// ================================================================
+// CONTEÚDO — edite aqui os textos e as pessoas
+// ================================================================
+const CONTEUDO = {
+  construtora: {
+    titulo: 'Quem Somos',
+    textos: [
+      'TEXTO DA CONSTRUTORA — parágrafo 1.',
+      'TEXTO DA CONSTRUTORA — parágrafo 2.',
+    ],
+  },
+  tituloPessoas: 'Quem fez parte',
+  pessoas: [
+    { nome: 'Brenda Jeanne', cargo: 'CARGO', foto: 'assets/Brenda Jeanne.jpeg', texto: 'Texto sobre Brenda Jeanne.' },
+    { nome: 'Filipo Madeira', cargo: 'CARGO', foto: 'assets/Filipo Madeira.jpeg', texto: 'Texto sobre Filipo Madeira.' },
+    { nome: 'Luciana Dias', cargo: 'CARGO', foto: 'assets/Luciana Dias.jpeg', texto: 'Texto sobre Luciana Dias.' },
+  ],
+};
+
+// ================================================================
+// RENDER
+// ================================================================
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+document.getElementById('c-titulo').textContent = CONTEUDO.construtora.titulo;
+document.getElementById('c-textos').innerHTML =
+  CONTEUDO.construtora.textos.map(t => `<p>${esc(t)}</p>`).join('');
+document.getElementById('p-titulo').textContent = CONTEUDO.tituloPessoas;
+document.getElementById('pessoas').innerHTML = CONTEUDO.pessoas.map(p => `
+  <article class="pessoa">
+    <div class="pessoa-texto">
+      <h3 class="pessoa-nome">${esc(p.nome)}</h3>
+      <div class="pessoa-cargo">${esc(p.cargo)}</div>
+      <p class="pessoa-bio">${esc(p.texto)}</p>
+    </div>
+    <div class="pessoa-foto"><img src="${esc(p.foto)}" alt="${esc(p.nome)}" loading="lazy" decoding="async"></div>
+  </article>`).join('');
+
+// ── 3DVista close communication ──
+document.getElementById('btn-close').addEventListener('click', () => {
+  if (window.parent !== window) window.parent.postMessage({ action: 'closeGallery' }, '*');
+});
+</script>
+</body>
+</html>
