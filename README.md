@@ -2,7 +2,7 @@
 
 Tela "Quem Somos" (construtora + pessoas que participaram da obra) para injeção via script no 3DVista, hospedada no AWS S3.
 
-**Tema:** verde imersivo (`#325825` / `#F2EBDD`)
+**Tema:** escuro (`#434040` / `#F2EBDD`)
 
 ---
 
@@ -116,7 +116,7 @@ O botão de fechar da própria página envia `postMessage({ action: 'closeGaller
 
 | Token CSS | Valor | Papel |
 |-----------|-------|-------|
-| `--bg` | `#325825` | Verde-escuro principal (fundo) |
+| `--bg` | `#434040` | Cinza-escuro principal (fundo) |
 | `--dark` | `#F2EBDD` | Texto/ícones (creme) |
 | Fonte títulos | Cormorant Garamond | — |
 | Fonte texto | Inter | — |

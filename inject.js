@@ -28,7 +28,7 @@
 
     var iframe = d.createElement('iframe');
     iframe.src = QUEM_SOMOS_URL + '?v=' + Date.now();
-    iframe.style.cssText = 'width:100%;height:100%;border:none;display:block;background:#325825;';
+    iframe.style.cssText = 'width:100%;height:100%;border:none;display:block;background:#434040;';
     iframe.setAttribute('allow', 'fullscreen');
 
     overlay.appendChild(iframe);
