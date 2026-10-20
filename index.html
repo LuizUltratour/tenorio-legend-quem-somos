@@ -96,6 +96,10 @@
     }
 
     .oculto { display: none !important; }
+    /* Quem Somos: conteúdo centralizado na tela (margin:auto centraliza e ainda deixa rolar se o conteúdo for maior) */
+    body.so-quem-somos #qs-scroll { display: flex; flex-direction: column; }
+    body.so-quem-somos #construtora { margin: auto; padding: 80px 22px; }
+    body.so-quem-somos footer { display: none; }
     #arquitetos { padding-top: 90px; }
     .divisor {
       width: 64px; height: 1px;
@@ -264,6 +268,7 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':
 // ?secao=quem-somos | arquitetos (cada botão do tour abre uma parte)
 const SECAO = new URLSearchParams(location.search).get('secao') === 'arquitetos' ? 'arquitetos' : 'quem-somos';
 document.getElementById(SECAO === 'arquitetos' ? 'construtora' : 'arquitetos').classList.add('oculto');
+document.body.classList.toggle('so-quem-somos', SECAO === 'quem-somos');
 document.title = SECAO === 'arquitetos' ? 'Arquitetos — Tenório Legend' : 'Quem Somos — Tenório Legend';
 
 document.getElementById('c-titulo').textContent = CONTEUDO.construtora.titulo;
